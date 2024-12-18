@@ -26,14 +26,14 @@ public class UserService {
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public User register(String firstname,String lastname,String email,String password,String phone,String gender) {
+    public User register(String firstname,String lastname,String email,String password,String phone,String gender,String profileImageUrl) {
         if(userRepository.findByEmail(email) != null || userMySQLRepository.findByEmail(email).isPresent()){
             throw new RuntimeException("Email already exists");
         }
 
         String hashedPassword = passwordEncoder.encode(password);
 
-        User user = new User(firstname, lastname, email, hashedPassword, "user", phone, gender, null, "thb", false);
+        User user = new User(firstname, lastname, email, hashedPassword, "user", phone, gender, null, "thb", false, profileImageUrl);
         UserMySQL userMySQL = new UserMySQL(firstname, lastname, email, hashedPassword, "user", phone, gender);
         userRepository.save(user);
         userMySQLRepository.save(userMySQL);
@@ -113,7 +113,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User updateProfile(String email,String firstname,String lastname,String phone,String gender){
+    public User updateProfile(String email,String firstname,String lastname,String phone,String gender,String profileImageUrl){
         User user = userRepository.findByEmail(email);
         if(user == null){
             throw new RuntimeException("User not fround");
@@ -123,6 +123,7 @@ public class UserService {
         user.setLastname(lastname);
         user.setPhone(phone);
         user.setGender(gender);
+        user.setProfileImageUrl(profileImageUrl);
 
         userMySQLRepository.findByEmail(email).ifPresent(userMySQL -> {
             userMySQL.setFirstname(firstname);

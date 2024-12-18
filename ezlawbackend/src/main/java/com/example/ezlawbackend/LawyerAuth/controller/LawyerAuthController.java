@@ -31,14 +31,15 @@ public class LawyerAuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody LawyerSignuprequest request) {
         Lawyer newLawyer = lawyerService.register(
-                request.getFirstname(),
-                request.getLastname(),
-                request.getEmail(),
+                request.getlawyerFirstname(),
+                request.getlawyerLastname(),
+                request.getlawyerEmail(),
                 request.getPassword(),
                 request.getPhone(),
                 request.getGender(),
                 request.getAddress(),
-                request.getBio()
+                request.getBio(),
+                request.getProfileImageUrl()
         );
         return ResponseEntity.ok("User registered successfully with ID: " + newLawyer.getLawyerid());
     }
@@ -107,20 +108,22 @@ public class LawyerAuthController {
             }
             Lawyer updatedLawyer = lawyerService.updateProfile(
                     email,
-                    request.get("firstname"),
-                    request.get("lastname"),
+                    request.get("lawyerFirstname"),
+                    request.get("lawyerLastname"),
                     request.get("phone"),
                     request.get("gender"),
                     request.get("address"),
-                    request.get("bio")
+                    request.get("bio"),
+                    request.get("profileImageUrl")
             );
 
             Map<String, Object> response = new HashMap<>();
             response.put("id", updatedLawyer.getLawyerid());
-            response.put("firstname", updatedLawyer.getLawyerFirstname());
-            response.put("lastname", updatedLawyer.getLawyerLastname());
+            response.put("lawyerFirstname", updatedLawyer.getLawyerFirstname());
+            response.put("lawyerLastname", updatedLawyer.getLawyerLastname());
             response.put("phone", updatedLawyer.getPhone());
             response.put("gender", updatedLawyer.getGender());
+            response.put("profileImageUrl", updatedLawyer.getProfileImageUrl());
 
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {

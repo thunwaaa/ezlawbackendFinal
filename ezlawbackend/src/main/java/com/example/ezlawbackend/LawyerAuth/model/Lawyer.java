@@ -18,8 +18,9 @@ public class Lawyer {
     private String gender;
     private String address;
     private String bio;
+    private String profileImageUrl;
 
-    public Lawyer(String lawyerFirstname, String lawyerLastname, String lawyerEmail, String hashedPassword, String role, String phone, String gender, String address, String bio) {
+    public Lawyer(String lawyerFirstname, String lawyerLastname, String lawyerEmail, String hashedPassword, String role, String phone, String gender, String address, String bio, String profileImageUrl) {
         this.lawyerFirstname = lawyerFirstname;
         this.lawyerLastname = lawyerLastname;
         this.lawyerEmail = lawyerEmail;
@@ -29,6 +30,7 @@ public class Lawyer {
         this.gender = gender;
         this.address = address;
         this.bio = bio;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public void setLawyerid(String lawyerid){
@@ -109,5 +111,13 @@ public class Lawyer {
 
     public void setBio(String bio){
         this.bio = bio;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

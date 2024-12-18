@@ -51,7 +51,8 @@ public class AuthController {
                 request.getEmail(),
                 request.getPassword(),
                 request.getPhone(),
-                request.getGender()
+                request.getGender(),
+                request.getProfileImageUrl()
         );
         return ResponseEntity.ok("User registered successfully with ID: " + user.getId());
     }
@@ -146,7 +147,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/edit-profile")
+    @PutMapping("/edit-profile")
     public ResponseEntity<?> editprofile(@RequestBody Map<String,String>request,HttpSession session){
         try{
             String email = (String) session.getAttribute(EMAIL_KEY);
@@ -159,7 +160,8 @@ public class AuthController {
                     request.get("firstname"),
                     request.get("lastname"),
                     request.get("phone"),
-                    request.get("gender")
+                    request.get("gender"),
+                    request.get("profileImageUrl")
             );
 
             Map<String, Object> response = new HashMap<>();
@@ -168,6 +170,7 @@ public class AuthController {
             response.put("lastname", updateUser.getLastname());
             response.put("phone", updateUser.getPhone());
             response.put("gender",updateUser.getGender());
+            response.put("profileImageUrl",updateUser.getProfileImageUrl());
 
             return  ResponseEntity.ok(response);
 
@@ -223,4 +226,6 @@ public class AuthController {
 
         return ResponseEntity.ok(response);
     }
+
+
 }

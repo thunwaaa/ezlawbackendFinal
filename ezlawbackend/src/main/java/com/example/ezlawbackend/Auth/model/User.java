@@ -16,6 +16,7 @@ public class User {
     private String role;
     private String phone;
     private String gender;
+    private String profileImageUrl;
 
     @Column(nullable = true)
     private String stripeCustomerId;
@@ -27,9 +28,11 @@ public class User {
     @Column(nullable = true)
     private boolean isMember = false;
 
+    public User(){}
+
     public User(String firstname, String lastname, String email, String hashedPassword,
                 String role, String phone, String gender, String stripeCustomerId,
-                String currency, boolean isMember
+                String currency, boolean isMember, String profileImageUrl
     ) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -41,6 +44,7 @@ public class User {
         this.stripeCustomerId = stripeCustomerId;
         this.currency = currency;
         this.isMember = isMember;
+        this.profileImageUrl = profileImageUrl;
     }
     public String getId() {
         return Userid;
@@ -108,4 +112,12 @@ public class User {
 
     public String getStripeCustomerId() {return stripeCustomerId;}
     public void setStripeCustomerId(String stripeCustomerId) {this.stripeCustomerId = stripeCustomerId;}
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
 }

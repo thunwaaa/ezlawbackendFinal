@@ -16,7 +16,8 @@ public class SessionAuthInterceptor implements HandlerInterceptor {
         String path = request.getRequestURI();
         if (path.contains("/api/auth/login") ||
                 path.contains("/api/auth/signup") ||
-                path.contains("/api/webhook/stripe")) {
+                path.contains("/api/webhook/stripe") ||
+                path.contains("/api/laws/**")) {
             logger.info("Bypassing authentication for path: {}", path);
             return true;
         }

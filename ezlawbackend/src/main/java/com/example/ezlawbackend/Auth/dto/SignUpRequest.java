@@ -7,6 +7,7 @@ public class SignUpRequest {
     private String password;
     private String phone;
     private String gender;
+    private String profileImageUrl;
 
     public String getFirstname() {
         return firstname;
@@ -54,5 +55,13 @@ public class SignUpRequest {
 
     public void setGender(String gender){
         this.gender = gender;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

@@ -24,6 +24,8 @@ public class CorsConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/webhook/stripe").permitAll() // Permitting webhook stripe endpoint
+                        .requestMatchers("/api/lawyerauth/**").permitAll()
+                        .requestMatchers("/api/laws/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

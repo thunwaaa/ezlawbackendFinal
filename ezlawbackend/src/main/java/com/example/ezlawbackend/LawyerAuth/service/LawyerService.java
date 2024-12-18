@@ -15,14 +15,14 @@ public class LawyerService {
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public Lawyer register(String firstname, String lastname, String email, String password, String phone, String gender, String info,String bio) {
+    public Lawyer register(String firstname, String lastname, String email, String password, String phone, String gender, String info,String bio,String profileImageUrl) {
         if (lawyerRepository.findByLawyerEmail(email) != null) {
             throw new RuntimeException("Email already exists");
         }
 
         String hashedPassword = passwordEncoder.encode(password);
 
-        Lawyer lawyer = new Lawyer(firstname,lastname,email,hashedPassword,"Lawyer",phone,gender,info,bio);
+        Lawyer lawyer = new Lawyer(firstname,lastname,email,hashedPassword,"Lawyer",phone,gender,info,bio,profileImageUrl);
         return lawyerRepository.save(lawyer);
     }
 
@@ -38,7 +38,7 @@ public class LawyerService {
     }
 
 
-    public Lawyer updateProfile(String email, String firstname, String lastname, String phone, String gender,String address, String bio) {
+    public Lawyer updateProfile(String email, String firstname, String lastname, String phone, String gender,String address, String bio,String profileImageUrl) {
         Lawyer lawyer = lawyerRepository.findByLawyerEmail(email);
         if (lawyer == null) {
             throw new RuntimeException("Lawyer not found");
@@ -50,6 +50,7 @@ public class LawyerService {
         lawyer.setGender(gender);
         lawyer.setAddress(address);
         lawyer.setBio(bio);
+        lawyer.setProfileImageUrl(profileImageUrl);
 
         return lawyerRepository.save(lawyer);
     }
