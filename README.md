@@ -1,5 +1,4 @@
 # ezlawbackendFinal
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/thunwaaa/ezlawbackendFinal)
 
 This repository contains the backend service for the EZ Law application, built with Spring Boot. It provides a RESTful API for user and lawyer authentication, profile management, and subscription handling via Stripe integration.
 
